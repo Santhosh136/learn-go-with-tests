@@ -12,6 +12,10 @@ type Student struct {
 	character string
 }
 
+func (student Student) Introduce() string {
+	return "I am " + student.name + " and I am " + student.character
+}
+
 func SortStudent(student Student) string {
 	return sort(student)
 }

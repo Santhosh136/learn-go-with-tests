@@ -22,3 +22,14 @@ func TestSortStudent(t *testing.T) {
 		}
 	})
 }
+
+func TestIntroduce(t *testing.T) {
+
+	student := Student{"santhosh", "wit"}
+	got := student.Introduce()
+	want := "I am santhosh and I am wit"
+
+	if got != want {
+		t.Errorf("got %s, but want %s", got, want)
+	}
+}

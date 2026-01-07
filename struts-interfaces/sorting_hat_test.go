@@ -25,11 +25,28 @@ func TestSortStudent(t *testing.T) {
 
 func TestIntroduce(t *testing.T) {
 
-	student := Student{"santhosh", "wit"}
-	got := student.Introduce()
-	want := "I am santhosh and I am wit"
-
-	if got != want {
-		t.Errorf("got %s, but want %s", got, want)
+	// decoupled from concrete types student or teacher
+	checkIntroduction := func(t testing.TB, person Person, want string) {
+		t.Helper()
+		got := person.Introduce()
+		if got != want {
+			t.Errorf("got %s, but want %s", got, want)
+		}
 	}
+
+	t.Run("student introduction", func(t *testing.T) {
+		student := Student{"santhosh", "wit"}
+		want := "I am santhosh, I am wit"
+
+		checkIntroduction(t, student, want)
+
+	})
+
+	t.Run("teacher introduction", func(t *testing.T) {
+		teacher := Teacher{name: "snape", skill: "potions"}
+		want := "I am snape, I teach potions"
+
+		checkIntroduction(t, teacher, want)
+	})
+
 }

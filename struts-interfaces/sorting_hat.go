@@ -7,13 +7,26 @@ const (
 	revanclaw  = "Revanclaw"
 )
 
+type Person interface {
+	Introduce() string
+}
+
 type Student struct {
 	name      string
 	character string
 }
 
 func (student Student) Introduce() string {
-	return "I am " + student.name + " and I am " + student.character
+	return "I am " + student.name + ", I am " + student.character
+}
+
+type Teacher struct {
+	name  string
+	skill string
+}
+
+func (person Teacher) Introduce() string {
+	return "I am " + person.name + ", I teach " + person.skill
 }
 
 func SortStudent(student Student) string {

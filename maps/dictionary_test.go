@@ -18,7 +18,9 @@ func TestSearch(t *testing.T) {
 		_, err := dictionary.Search("unknown")
 		assertErrors(t, err, ErrorNotFound)
 	})
+}
 
+func TestAddWord(t *testing.T) {
 	t.Run("add new word to dictionary", func(t *testing.T) {
 		dictionary := Dictionary{"test": "testing word"}
 		err := dictionary.AddNewWord("new", "new word")
@@ -43,6 +45,18 @@ func TestSearch(t *testing.T) {
 
 		assertIntegers(t, got, want)
 		assertErrors(t, err, ErrorAlreadyExists)
+	})
+}
+
+func TestUpdate(t *testing.T) {
+
+	t.Run("update word", func(t *testing.T) {
+		dictionary := Dictionary{"test": "testing word"}
+		dictionary.UpdateWord("test", "updated testing word")
+		got := dictionary["test"]
+		want := "updated testing word"
+
+		assertStrings(t, got, want)
 	})
 
 }

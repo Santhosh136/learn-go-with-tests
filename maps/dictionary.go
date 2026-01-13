@@ -25,3 +25,7 @@ func (d Dictionary) AddNewWord(word, meaning string) error {
 	d[word] = meaning
 	return nil
 }
+
+func (d Dictionary) UpdateWord(word, newMeaning string) {
+	d[word] = newMeaning
+}
